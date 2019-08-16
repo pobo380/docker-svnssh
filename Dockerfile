@@ -2,6 +2,9 @@
 FROM alpine:3.10
 EXPOSE 22
 
+ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh /
+
 RUN apk add --no-cache openssh subversion \
   && sed -i s/#PermitRootLogin.*/PermitRootLogin\ no/ /etc/ssh/sshd_config \
   && sed -i s/#PasswordAuthentication.*/PasswordAuthentication\ no/ /etc/ssh/sshd_config \
